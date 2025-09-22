@@ -36,6 +36,11 @@ footer ul {
     list-style-type: none;
 }
 
+.footer__links {
+    color: white;
+    text-decoration: none;
+}
+
 footer li {
     padding: .5em 0;
 }
