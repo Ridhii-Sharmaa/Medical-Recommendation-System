@@ -1,11 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Health Care Center</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-      <link rel="icon" href="http://127.0.0.1:5000/static/img%20(1).png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="http://127.0.0.1:5000/static/img%20(1).png">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+          integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <style>
         body {
             background-image: url('https://wallpaperaccess.com/full/5301521.jpg');
@@ -15,10 +21,11 @@
         }
 
         .navbar-brand {
-            font-size:17px;
+            font-size: 17px;
         }
+
         .heading {
-           margin:20px;
+            margin: 20px;
         }
 
         .logo {
@@ -37,387 +44,452 @@
         }
 
 
-      .fill {
-        background-color: white;
-        border-radius: 8px;
-        padding:40px;
-        width:70vw;
-        box-shadow: 0px 0px 12px grey;
-        height:43vh;
-      }
+        .fill {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            width: 70vw;
+            box-shadow: 0px 0px 12px grey;
+            height: 43vh;
+        }
 
-      .predict-btn {
-        width:100%;
-        color:white;
-        font-weight:bold;
-        transition: transform 0.3s ease-in;
-      }
+        .predict-btn {
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s ease-in;
+        }
 
-      .predict-btn:hover {
-      transform: scale(1.04);
-      }
+        .predict-btn:hover {
+            transform: scale(1.04);
+        }
 
-      #startSpeechRecognition {
-        background-color: #39adfa;
-        border-radius: 30px;
-        margin: 25px 0px;
-        box-shadow: 0px 0px 5px gray;
-        border:none;
-      }
+        #startSpeechRecognition {
+            background-color: #39adfa;
+            border-radius: 30px;
+            margin: 25px 0px;
+            box-shadow: 0px 0px 5px gray;
+            border: none;
+        }
 
-      .result-container {
-        width:80%;
-        margin:auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap:wrap;
-      }
+        .result-container {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
         .all-btn {
-        margin:15px 12px;
-        width:140px;
-        border:none;
-        border-radius:8px;
-        padding:8px 5px;
-        font-weight:bold;
-        font-size:20px;
-        background-color:#0542a7;
-        color:white;
-        transition:transform 0.3s ease-in;
+            margin: 15px 12px;
+            width: 140px;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 5px;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: #0542a7;
+            color: white;
+            transition: transform 0.3s ease-in;
         }
 
         .all-btn:hover {
-        box-shadow: 0px 0px 12px white;
-        transform: scale(1.08);
+            box-shadow: 0px 0px 12px white;
+            transform: scale(1.08);
         }
+
         .extra-feature {
-        display: inline-block;        
-        margin-top: 4px;             
-        margin-bottom: 0px;          
-        padding: 9px 18px;           
-        font-size: 14px;
-        font-weight: 700;
-        color: #ffffff;               
-        background-color: #4da3ff;    
-        border: none;
-        border-radius: 10px;           
-        cursor: pointer;
-        width: fit-content;           
-        text-decoration: none;
-        transition:
-          transform 0.2s ease 0.2s,
-          box-shadow 0.1s ease 0.1s,
-          background-color 0.2s ease 0.2s; 
+            display: inline-block;
+            margin-top: 4px;
+            margin-bottom: 0px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #4da3ff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: fit-content;
+            text-decoration: none;
+            transition: transform 0.2s ease 0.2s,
+            box-shadow 0.1s ease 0.1s,
+            background-color 0.2s ease 0.2s;
         }
+
         .extra-feature:hover {
-        transform: scale(1.02);
-        background-color: #1f4aa5;    
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+            background-color: #1f4aa5;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
     </style>
-  </head>
-  <body>
+</head>
+<body>
 
-  <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0542a7;">
-  <div class="container-fluid">
-    <div class="logo">
-      <img class="myimg" src="{{url_for('static', filename='img (1).png')}}" alt="">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0542a7;">
+    <div class="container-fluid">
+        <div class="logo">
+            <img class="myimg" src="{{url_for('static', filename='img (1).png')}}" alt="">
+        </div>
+        <a class="navbar-brand" href="#">Health Care Center</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/index">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/developer">Developer</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
     </div>
-    <a class="navbar-brand" href="#">Health Care Center</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index">Home</a>
-        </li>
-
-         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/developer">Developer</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/blog">Blog</a>
-        </li>
-
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
 </nav>
-  <!-- main form of page -->
+<!-- main form of page -->
 <h1 class="heading text-center">Health Care Center</h1>
 
-    <div class="container mt-4 my-4 fill">
-      <form action="/predict" method="post">
+<div class="container mt-4 my-4 fill">
+    <form action="/predict" method="post">
         <div class="form-group">
-          <label class="my-2" for="symptoms" style="font-size:20px;">Type Symptoms</label>
-        <input 
-  type="text" 
-  class="form-control" 
-  id="symptoms" 
-  name="symptoms" 
-  placeholder="Enter your symptoms like itching, vomiting, nausea etc"
-  list="symptom-suggestions" 
-  autocomplete="off">
-<datalist id="symptom-suggestions"></datalist>
+            <label class="my-2" for="symptoms" style="font-size:20px;">Type Symptoms</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="symptoms"
+                    name="symptoms"
+                    placeholder="Enter your symptoms like itching, vomiting, nausea etc"
+                    list="symptom-suggestions"
+                    autocomplete="off">
+            <datalist id="symptom-suggestions"></datalist>
 
         </div>
 
-          <button type="button" id="startSpeechRecognition" class="btn btn-primary">
-                Start Speech Recognition
-          </button>
+        <button type="button" id="startSpeechRecognition" class="btn btn-primary">
+            Start Speech Recognition
+        </button>
 
-          <button class="btn btn-danger predict-btn">Predict</button>
-          
-          <!-- NEW BUTTON ADDED -->
-          <a href="/extra" class="extra-feature">Extra Feature</a>
-      </form>
-    </div>
+        <button class="btn btn-danger predict-btn">Predict</button>
 
-    {% if predicted_disease %}
+        <!-- NEW BUTTON ADDED -->
+        <a href="/extra" class="extra-feature">Extra Feature</a>
+    </form>
+</div>
 
-    <h1 class="text-center mt-8 my-8" style="padding:
+{% if predicted_disease %}
+
+<h1 class="text-center mt-8 my-8" style="padding:
 20px;">Our AI System Results</h1>
-    <div class="container">
+<div class="container">
 
     <div class="result-container">
         <!-- Buttons to toggle display -->
         <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
-        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#descriptionModal" >Description</button>
-        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#precautionModal" >Precaution</button>
-        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#medicationsModal" >Medications</button>
-        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#workoutsModal" >Workouts</button>
-        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#dietsModal" >Diets</button>
+        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description
+        </button>
+        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution
+        </button>
+        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications
+        </button>
+        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+        <button class="toggle-button all-btn" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
     </div>
 </div>
 
-    {% endif %}
+{% endif %}
 
-    <!-- Disease Modal -->
-    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;"> <!-- Set header background color inline -->
-                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="background-color: #d9534f;"> <!-- Set modal body background color inline -->
-                    <p style="font-weight:bold;">{{ predicted_disease }}</p>
-                </div>
+<!-- Disease Modal -->
+<div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <!-- Set header background color inline -->
+                <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #d9534f;"> <!-- Set modal body background color inline -->
+                <p style="font-weight:bold;">{{ predicted_disease }}</p>
             </div>
         </div>
     </div>
+</div>
 
 
-     <!-- Description Modal -->
-    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;">
-                    <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ dis_des }}</p>
-                </div>
+<!-- Description Modal -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ dis_des }}</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Precaution Modal -->
-    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;">
-                    <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        {% for i in dis_pre %}
-                            {% for i in i %}
-                                <li>{{ i }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                    </ul>
-                </div>
+<!-- Precaution Modal -->
+<div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for i in dis_pre %}
+                    {% for i in i %}
+                    <li>{{ i }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-     <!-- Medications Modal -->
-    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;">
-                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        {% for i in dis_med %}
-                            <li>{{ i }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+<!-- Medications Modal -->
+<div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for i in dis_med %}
+                    <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Workouts Modal -->
-    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;">
-                    <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        {% for i in dis_wrkout %}
-                            <li>{{ i }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+<!-- Workouts Modal -->
+<div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for i in dis_wrkout %}
+                    <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Diets Modal -->
-    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #0542a7; color:white;">
-                    <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        {% for i in dis_diet %}
-                            <li>{{ i }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+<!-- Diets Modal -->
+<div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0542a7; color:white;">
+                <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for i in dis_diet %}
+                    <li>{{ i }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
-        const transcriptionDiv = document.getElementById('transcription');
 
-        startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+<footer class="footer-container">
+    <div class="container">
+        <div class="footer__section col-md-6">
+            <h3 class="fs-3">Health Care Center
+                <img class="footer__img"
+                     src="{{url_for('static', filename='img (1).png')}}"
+                     alt="">
+            </h3>
+            <p class="fs-6">Our platform leverages AI and machine learning to provide instant, personalized health
+                recommendations based on your symptoms. We combine medical expertise, data science, and user-friendly
+                design to empower you to
+                make informed health decisions.</p>
+            <div class="d-flex-column align-items-center">
+                <div class="flex-row d-flex justify-content-between p-2">
+                    <a href="#" class="footer__link"><i class="bi bi-facebook fs-3"></i></a>
+                    <a href="#" class="footer__link"><i class="bi bi-instagram fs-3"></i></a>
+                    <a href="#" class="footer__link"><i class="bi bi-twitter-x fs-3"></i></a>
+                    <a href="#" class="footer__link"><i class="bi bi-youtube fs-3"></i></a>
+                    <a href="#" class="footer__link"><i class="bi bi-linkedin fs-3"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__section col-md-2">
+            <h3 class="fs-3">Quick Links</h3>
+            <ul>
+                <li class="footer__links">Home</li>
+                <li class="footer__links">About</li>
+                <li class="footer__links">Contact</li>
+                <li class="footer__links">Developer</li>
+                <li class="footer__links">Blog</li>
+            </ul>
+        </div>
+        <div class="footer__section footer__contact-sec col-md-4">
+            <h3 class="fs-3">Have a question?</h3>
+            <p>Our support team is here to assist you with inquiries, feedback, or technical issues.</p>
+            <div class="mb-1">
+                <i class="bi bi-telephone-fill fs-6 "></i>
+                <span class="fs-6 fst-normal ps-2">+91 1234567890</span>
+            </div>
+            <div>
+                <i class="bi bi-envelope-fill fs-6"></i>
+                <span class="fs-6 fst-normal ps-3">healthcare@gmail.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer__section text-center my-4">
+        <i class="bi bi-c-circle"></i><span> 2025 Health Care Center. All rights reserved.</span>
+    </div>
+</footer>
 
-        function startSpeechRecognition() {
-            const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+<script>
+    const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+    const transcriptionDiv = document.getElementById('transcription');
 
-            recognition.lang = 'en-US'; // Set the language for recognition
+    startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
 
-            recognition.onresult = function (event) {
-                const result = event.results[0][0].transcript;
-                transcriptionDiv.textContent = result;
-            };
+    function startSpeechRecognition() {
+        const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
 
-            recognition.onend = function () {
-                console.log('Speech recognition ended.');
+        recognition.lang = 'en-US'; // Set the language for recognition
+
+        recognition.onresult = function (event) {
+            const result = event.results[0][0].transcript;
+            transcriptionDiv.textContent = result;
+        };
+
+        recognition.onend = function () {
+            console.log('Speech recognition ended.');
         };
 
         recognition.start();
     }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="{{ url_for('static', filename='js/autocompleteData.js') }}"></script>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/autocompleteData.js') }}"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const list = document.getElementById("symptom-suggestions");
-    if (!list || !window.MED_SUGGESTIONS) return;
+    document.addEventListener("DOMContentLoaded", function () {
+        const list = document.getElementById("symptom-suggestions");
+        if (!list || !window.MED_SUGGESTIONS) return;
 
-    list.innerHTML = "";
-    window.MED_SUGGESTIONS.forEach(symptom => {
-      const opt = document.createElement("option");
-      opt.value = symptom;
-      list.appendChild(opt);
+        list.innerHTML = "";
+        window.MED_SUGGESTIONS.forEach(symptom => {
+            const opt = document.createElement("option");
+            opt.value = symptom;
+            list.appendChild(opt);
+        });
     });
-  });
 </script>
 <!-- Loading Spinner Overlay -->
 <div id="loading-overlay" style="display:none;
      position:fixed; inset:0; background:rgba(255,255,255,0.7);
      z-index:9999; backdrop-filter: blur(2px);">
-  <div class="spinner"></div>
+    <div class="spinner"></div>
 </div>
 
 <style>
-.spinner {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px; height: 60px;
-  border: 6px solid #ccc;
-  border-top: 6px solid #d9534f; /* red spinner */
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border: 6px solid #ccc;
+        border-top: 6px solid #d9534f; /* red spinner */
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
 
-@keyframes spin {
-  0%   { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
+    @keyframes spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
 </style>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const predictBtn = document.querySelector(".predict-btn");
-  const overlay = document.getElementById("loading-overlay");
+    document.addEventListener("DOMContentLoaded", function () {
+        const predictBtn = document.querySelector(".predict-btn");
+        const overlay = document.getElementById("loading-overlay");
 
-  if (predictBtn && overlay) {
-    predictBtn.addEventListener("click", function () {
-      overlay.style.display = "block";   // show spinner overlay
-      // keep it for at least 3 seconds
-      setTimeout(() => {
-        overlay.style.display = "none"; // hide after 3s (for demo)
-      }, 3000);
+        if (predictBtn && overlay) {
+            predictBtn.addEventListener("click", function () {
+                overlay.style.display = "block";   // show spinner overlay
+                // keep it for at least 3 seconds
+                setTimeout(() => {
+                    overlay.style.display = "none"; // hide after 3s (for demo)
+                }, 3000);
+            });
+        }
     });
-  }
-});
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");   
-    const predictBtn = document.querySelector(".predict-btn");
-    const symptomsInput = document.getElementById("symptoms");
-  
-    const emergencySymptoms = ["chest pain","shortness of breath","breathing difficulty","fainting","seizure","severe bleeding","unconscious","severe headache","high fever"];
-  
-    predictBtn.addEventListener("click", function (e) {
-      const userInput = symptomsInput.value.toLowerCase();
-  
-      const isEmergency = emergencySymptoms.some(symptom =>
-        userInput.includes(symptom)
-      );
-  
-      if (isEmergency) {
-        e.preventDefault();
-        alert("⚠️ This may be a medical emergency. Please contact a doctor or emergency services immediately.");
-      } else {
-        form.submit(); 
-      }
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const predictBtn = document.querySelector(".predict-btn");
+        const symptomsInput = document.getElementById("symptoms");
+
+        const emergencySymptoms = ["chest pain", "shortness of breath", "breathing difficulty", "fainting", "seizure", "severe bleeding", "unconscious", "severe headache", "high fever"];
+
+        predictBtn.addEventListener("click", function (e) {
+            const userInput = symptomsInput.value.toLowerCase();
+
+            const isEmergency = emergencySymptoms.some(symptom =>
+                userInput.includes(symptom)
+            );
+
+            if (isEmergency) {
+                e.preventDefault();
+                alert("⚠️ This may be a medical emergency. Please contact a doctor or emergency services immediately.");
+            } else {
+                form.submit();
+            }
+        });
     });
-  });
-  </script>
+</script>
 </body>
 </html>
